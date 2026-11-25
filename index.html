@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ app_name }} | Control Panel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="app-shell">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">⛏</div>
+            <div>
+                <h2>RAM<span>HOST</span></h2>
+                <small>SERVER CONTROL PANEL</small>
+            </div>
+        </div>
+
+        <div class="sidebar-label">MAIN MENU</div>
+
+        <nav class="side-nav">
+            <a href="/platform" class="nav-link">✦ <span>Account & Rewards</span></a>
+            <a href="#dashboard" class="nav-link active">▦ <span>Dashboard</span></a>
+            <a href="#servers" class="nav-link">◈ <span>My Servers</span></a>
+            <a href="#create-server" class="nav-link">＋ <span>Create Server</span></a>
+            <a href="#console-section" class="nav-link">⌘ <span>Console</span></a>
+            <a href="#properties" class="nav-link">⚙ <span>Properties</span></a>
+        </nav>
+
+        <div class="sidebar-label">MANAGEMENT</div>
+
+        <nav class="side-nav">
+            <a href="#plugins" class="nav-link">▧ <span>Plugins</span></a>
+            <a href="#modsCard" class="nav-link">◇ <span>Mods</span></a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <div class="sidebar-help">
+                <div class="help-icon">?</div>
+                <strong>Need help?</strong>
+                <p>Manage your Minecraft server with ease.</p>
+            </div>
+            <div class="sidebar-version">RAMHOST PANEL · 2026</div>
+        </div>
+    </aside>
+
+    <!-- MAIN AREA -->
+    <div class="main-area">
+
+        <!-- TOPBAR -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <div class="topbar-title">Control Center</div>
+                <div class="breadcrumb">Home <span>/</span> Dashboard</div>
+            </div>
+
+            <div class="topbar-right">
+                <div class="membership-chip"><span>✦</span> RAMFREE HOSTING</div>
+                <div class="connection-label">
+                    <span class="connection-dot"></span>
+                    Local Panel
+                </div>
+                <div class="profile-avatar">RH</div>
+            </div>
+        </header>
+
+        <main class="dashboard-content">
+
+            <!-- DASHBOARD HERO -->
+            <section class="welcome-section neon-hero" id="dashboard">
+                <div class="hero-copy">
+                    <div class="eyebrow">✦ YOUR MINECRAFT UNIVERSE</div>
+                    <h1>Welcome Back,<br><span>Server Creator!</span></h1>
+                    <p>Build your world. Manage your servers.<br>Everything you need, in one powerful panel.</p>
+                    <a href="#create-server" class="primary-action">＋ Create New Server <span>→</span></a>
+                </div>
+                <div class="hero-art" aria-hidden="true">
+                    <div class="pixel-sun"></div><div class="pixel-mountain mountain-one"></div>
+                    <div class="pixel-mountain mountain-two"></div><div class="pixel-cube">◆</div>
+                    <div class="hero-glow"></div>
+                </div>
+                <aside class="ram-recommendation">
+                    <div class="ram-rec-title">⭐ RAM RECOMMENDATION</div>
+                    <div class="ram-rec-value">4 GB <span>RECOMMENDED</span></div>
+                    <div class="ram-block">▦</div>
+                    <p>For a smooth Minecraft experience, 4 GB is a good starting point.</p>
+                    <a href="#create-server">Explore RAM options →</a>
+                </aside>
+            </section>
+
+            <!-- STATUS OVERVIEW -->
+            <section class="overview-grid">
+                <div class="overview-card">
+                    <div class="overview-icon purple-icon">◈</div>
+                    <div>
+                        <small>SERVER CONTROL</small>
+                        <h3>Ready to manage</h3>
+                        <p>Your server dashboard</p>
+                    </div>
+                </div>
+
+                <div class="overview-card">
+                    <div class="overview-icon green-icon">⚡</div>
+                    <div>
+                        <small>QUICK ACCESS</small>
+                        <h3>Live Console</h3>
+                        <p>Monitor server output</p>
+                    </div>
+                </div>
+
+                <div class="overview-card">
+                    <div class="overview-icon blue-icon">◇</div>
+                    <div>
+                        <small>ADD-ONS</small>
+                        <h3>Mods & Plugins</h3>
+                        <p>Customize your server</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SERVERS -->
+            <section class="content-section" id="servers">
+                <div class="section-heading">
+                    <div>
+                        <div class="eyebrow">YOUR GAME WORLDS</div>
+                        <h2>My Servers</h2>
+                        <p>Choose a server to manage.</p>
+                    </div>
+                    <a href="#create-server" class="small-action">＋ New Server</a>
+                </div>
+
+                <div class="panel-card">
+                    <div id="serverList"></div>
+                </div>
+            </section>
+
+            <!-- CREATE SERVER -->
+            <section class="content-section" id="create-server">
+                <div class="section-heading">
+                    <div>
+                        <div class="eyebrow">GET STARTED</div>
+                        <h2>Create a Server</h2>
+                        <p>Configure your new Minecraft world.</p>
+                    </div>
+                </div>
+
+                <div class="panel-card">
+                    <div class="form-grid">
+
+                        <div class="form-field">
+                            <label for="newName">Server Name</label>
+                            <input type="text" id="newName" maxlength="30" placeholder="e.g. Survival World">
+                        </div>
+
+                        <div class="form-field">
+                            <label for="newVersion">Minecraft Version</label>
+                            <select id="newVersion">
+                                <option value="1.21.8">1.21.8</option>
+                            </select>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="newLoader">Server Software</label>
+                            <select id="newLoader">
+                                <option value="paper">Paper (Plugins)</option>
+                                <option value="purpur">Purpur (Plugins)</option>
+                                <option value="fabric">Fabric (Mods)</option>
+                                <option value="quilt">Quilt (Mods)</option>
+                                <option value="forge">Forge (Mods)</option>
+                                <option value="neoforge">NeoForge (Mods)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="newRam">Memory Allocation</label>
+                            <select id="newRam">
+                                <option value="1G">1 GB</option>
+                                <option value="2G" selected>2 GB</option>
+                                <option value="3G">3 GB</option>
+                                <option value="4G">4 GB</option>
+                                <option value="6G">6 GB</option>
+                                <option value="8G">8 GB</option>
+                            </select>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="newType">World Type</label>
+                            <select id="newType"></select>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="newSeed">World Seed (Optional)</label>
+                            <input type="text" id="newSeed" placeholder="Enter world seed">
+                        </div>
+
+                    </div>
+
+                    <div class="form-footer">
+                        <p id="createMsg" class="muted"></p>
+                        <button id="createBtn" class="btn green">＋ Create Server</button>
+                    </div>
+
+                    <div class="info-note">
+                        <strong>ⓘ Server information</strong>
+                        <p>New servers are configured using your existing backend setup. Java and Bedrock support depends on the selected server configuration.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SELECTED SERVER -->
+            <section class="content-section" id="server-control">
+                <div class="section-heading">
+                    <div>
+                        <div class="eyebrow">SERVER CONFIGURATION</div>
+                        <h2>Server Control</h2>
+                        <p>Manage your selected Minecraft server.</p>
+                    </div>
+                    <div id="statusBadge" class="badge stopped">Stopped</div>
+                </div>
+
+                <div class="panel-card">
+                    <div class="selected-server-heading">
+                        <div>
+                            <small>SELECTED SERVER</small>
+                            <h3 id="curName">-</h3>
+                        </div>
+                        <div class="server-symbol">⛏</div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-field">
+                            <label for="versionInput">Minecraft Version</label>
+                            <select id="versionInput">
+                                <option value="1.21.8">1.21.8</option>
+                            </select>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="ramSelect">Server RAM</label>
+                            <select id="ramSelect">
+                                <option value="1G">1 GB</option>
+                                <option value="2G" selected>2 GB</option>
+                                <option value="3G">3 GB</option>
+                                <option value="4G">4 GB</option>
+                                <option value="6G">6 GB</option>
+                                <option value="8G">8 GB</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <p class="muted" id="versionNote">
+                        Select a Minecraft version and use Setup / Update to apply it.
+                    </p>
+
+                    <div class="control-buttons">
+                        <button id="setupBtn" class="btn blue">Setup / Update</button>
+                        <button id="startBtn" class="btn green">▶ Start</button>
+                        <button id="stopBtn" class="btn red">■ Stop</button>
+                        <button id="restartBtn" class="btn orange">↻ Restart</button>
+                    </div>
+
+                    <div class="connection-info">
+                        <span>JAVA ADDRESS</span>
+                        <strong>localhost:25565</strong>
+                        <span class="connection-divider"></span>
+                        <span>BEDROCK PORT</span>
+                        <strong>19132</strong>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONSOLE -->
+            <section class="content-section" id="console-section">
+                <div class="section-heading">
+                    <div>
+                        <div class="eyebrow">LIVE SERVER OUTPUT</div>
+                        <h2>Terminal Console</h2>
+                        <p>View logs and send server commands.</p>
+                    </div>
+                    <div class="terminal-indicator"><span></span> TERMINAL</div>
+                </div>
+
+                <div class="terminal-card">
+                    <div class="terminal-top">
+                        <div class="terminal-lights"><i></i><i></i><i></i></div>
+                        <span>server@ramhost:~</span>
+                    </div>
+
+                    <div id="console"></div>
+
+                    <div class="terminal-input">
+                        <span class="terminal-prompt">❯</span>
+                        <input type="text" id="cmdInput" placeholder="Enter server command...">
+                        <button id="sendBtn" class="btn green">Send ↗</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROPERTIES -->
+            <section class="content-section" id="properties">
+                <div class="section-heading">
+                    <div>
+                        <div class="eyebrow">ADVANCED CONFIGURATION</div>
+                        <h2>Server Properties</h2>
+                        <p>Configure settings for your selected server.</p>
+                    </div>
+                </div>
+
+                <div class="panel-card">
+                    <div class="settings-heading">
+                        <div class="overview-icon blue-icon">⚙</div>
+                        <div>
+                            <h3>Configuration Settings</h3>
+                            <p>Changes can be saved while the server is stopped.</p>
+                        </div>
+                    </div>
+
+                    <div id="propsForm"></div>
+
+                    <div class="form-footer">
+                        <p id="propsMsg" class="muted"></p>
+                        <div class="button-group">
+                            <button id="propsReloadBtn" class="btn secondary">Reload</button>
+                            <button id="propsSaveBtn" class="btn green">Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PLUGINS -->
+            <section class="content-section" id="plugins">
+                <div class="section-heading">
+                    <div>
+                        <div class="eyebrow">SERVER CUSTOMIZATION</div>
+                        <h2>Plugin Manager</h2>
+                        <p>Find and manage Minecraft plugins.</p>
+                    </div>
+                    <div class="section-tag">PAPER / PURPUR</div>
+                </div>
+
+                <div class="panel-card">
+                    <div class="search-row">
+                        <input type="text" id="pluginSearch" placeholder="Search plugins...">
+                        <button id="pluginSearchBtn" class="btn blue">Search</button>
+                    </div>
+
+                    <div class="bulk-toolbar">
+                        <label class="select-all-label">
+                            <input type="checkbox" id="pluginSelectAll">
+                            Select all results
+                        </label>
+                        <span id="pluginSelectedCount" class="selection-count">0 selected</span>
+                        <button id="pluginBulkInstall" class="btn purple" disabled>Install Selected</button>
+                    </div>
+
+                    <div id="pluginResults"></div>
+
+                    <div class="subsection-heading">
+                        <h3>Installed Plugins</h3>
+                    </div>
+                    <div id="installedPlugins"></div>
+                </div>
+            </section>
+
+            <!-- MODS -->
+            <section class="content-section" id="modsCard">
+                <div class="section-heading">
+                    <div>
+                        <div class="eyebrow">SERVER CUSTOMIZATION</div>
+                        <h2>Mod Manager</h2>
+                        <p>Find and manage Minecraft mods.</p>
+                    </div>
+                    <div class="section-tag">FABRIC / FORGE / QUILT</div>
+                </div>
+
+                <div class="panel-card">
+                    <div class="search-row">
+                        <input type="text" id="modSearch" placeholder="Search Minecraft mods...">
+                        <button id="modSearchBtn" class="btn blue">Search Mods</button>
+                    </div>
+
+                    <div class="bulk-toolbar">
+                        <label class="select-all-label">
+                            <input type="checkbox" id="modSelectAll">
+                            Select all results
+                        </label>
+                        <span id="modSelectedCount" class="selection-count">0 selected</span>
+                        <button id="modBulkInstall" class="btn purple" disabled>Install Selected</button>
+                    </div>
+
+                    <div id="modResults"></div>
+
+                    <div class="subsection-heading">
+                        <h3>Installed Mods</h3>
+                    </div>
+                    <div id="installedMods"></div>
+                </div>
+            </section>
+
+            <footer class="page-footer">
+                <strong>{{ app_name }}</strong>
+                <span>Server Management Dashboard · 2026</span>
+            </footer>
+
+        </main>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

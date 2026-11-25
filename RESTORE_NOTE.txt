@@ -1,0 +1,14 @@
+RamFreeMCHosting - restored pre-theme-system version
+
+This package restores the original dashboard files from the November 19 project snapshot:
+- app.py (app(9).py)
+- templates/index.html (index(7).html)
+- static/style.css (style(3).css)
+- static/script.js (script(8).js)
+
+The later theme gallery / Purple Sakura theme selector and premium theme cards are not included.
+Existing Minecraft server functionality from this snapshot is retained.
+
+To use: back up your current project, then replace app.py, templates/index.html,
+static/style.css, and static/script.js with these files. Keep your existing server_data,
+config, server folders, and other user data untouched.

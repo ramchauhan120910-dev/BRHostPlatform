@@ -1,0 +1,8 @@
+.flask_secret_key
+.session_secret
+accounts.sqlite3
+panel_config.json
+.env
+__pycache__/
+venv/
+.venv/
